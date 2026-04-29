@@ -31,9 +31,33 @@
       flex-direction: column;
       align-items: center;
       padding: 48px 16px 64px;
-      background-image:
-        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(200,168,75,0.18) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(200,168,75,0.08) 0%, transparent 60%);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ── Courtroom background ── */
+    #courtroom-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    /* Dark overlay so content stays readable */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(to bottom,
+          rgba(6,8,18,0.72) 0%,
+          rgba(6,8,18,0.60) 40%,
+          rgba(6,8,18,0.75) 100%),
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(200,168,75,0.20) 0%, transparent 55%);
+      pointer-events: none;
     }
 
     /* ── Profile ── */
@@ -287,6 +311,370 @@
   </style>
 </head>
 <body>
+
+  <!-- ═══ Courtroom Background SVG ═══ -->
+  <svg id="courtroom-bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <!-- Wood grain gradient – dark walnut -->
+      <linearGradient id="woodWall" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="#1a0e06"/>
+        <stop offset="8%"   stop-color="#2c1a0a"/>
+        <stop offset="18%"  stop-color="#3a2210"/>
+        <stop offset="30%"  stop-color="#2c1a0a"/>
+        <stop offset="42%"  stop-color="#1e1007"/>
+        <stop offset="55%"  stop-color="#2c1a0a"/>
+        <stop offset="68%"  stop-color="#3a2210"/>
+        <stop offset="80%"  stop-color="#2c1a0a"/>
+        <stop offset="92%"  stop-color="#1a0e06"/>
+        <stop offset="100%" stop-color="#120a04"/>
+      </linearGradient>
+
+      <linearGradient id="woodFloor" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%"   stop-color="#2a1a08"/>
+        <stop offset="40%"  stop-color="#1e1206"/>
+        <stop offset="100%" stop-color="#0e0804"/>
+      </linearGradient>
+
+      <linearGradient id="woodPanel" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="#4a2e12"/>
+        <stop offset="25%"  stop-color="#5c3a18"/>
+        <stop offset="50%"  stop-color="#6b4520"/>
+        <stop offset="75%"  stop-color="#5c3a18"/>
+        <stop offset="100%" stop-color="#4a2e12"/>
+      </linearGradient>
+
+      <linearGradient id="benchGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%"   stop-color="#7a4e22"/>
+        <stop offset="30%"  stop-color="#5c3a16"/>
+        <stop offset="100%" stop-color="#3a2410"/>
+      </linearGradient>
+
+      <linearGradient id="columnGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="#2a1e10"/>
+        <stop offset="30%"  stop-color="#4a3420"/>
+        <stop offset="60%"  stop-color="#5a4228"/>
+        <stop offset="100%" stop-color="#2a1e10"/>
+      </linearGradient>
+
+      <linearGradient id="windowLight" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%"  stop-color="#d4a84b" stop-opacity="0.30"/>
+        <stop offset="50%" stop-color="#e8c96a" stop-opacity="0.12"/>
+        <stop offset="100%" stop-color="#c8a84b" stop-opacity="0.02"/>
+      </linearGradient>
+
+      <linearGradient id="windowGlass" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%"  stop-color="#8ab4c8" stop-opacity="0.18"/>
+        <stop offset="40%" stop-color="#d4e8f0" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#6090aa" stop-opacity="0.12"/>
+      </linearGradient>
+
+      <linearGradient id="ceilGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%"   stop-color="#0c0806"/>
+        <stop offset="100%" stop-color="#1a1208"/>
+      </linearGradient>
+
+      <radialGradient id="chandelierGlow" cx="50%" cy="0%" r="60%">
+        <stop offset="0%"   stop-color="#d4a84b" stop-opacity="0.35"/>
+        <stop offset="100%" stop-color="#c8a84b" stop-opacity="0"/>
+      </radialGradient>
+
+      <linearGradient id="pewGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%"   stop-color="#3a2410"/>
+        <stop offset="100%" stop-color="#221408"/>
+      </linearGradient>
+
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="6" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <filter id="softBlur">
+        <feGaussianBlur stdDeviation="2"/>
+      </filter>
+      <filter id="woodBlur">
+        <feGaussianBlur stdDeviation="0.8"/>
+      </filter>
+    </defs>
+
+    <!-- ── Sky / Ceiling ── -->
+    <rect width="1440" height="900" fill="#0c0906"/>
+    <rect width="1440" height="160" fill="url(#ceilGrad)"/>
+
+    <!-- Ceiling glow from chandelier -->
+    <ellipse cx="720" cy="0" rx="500" ry="220" fill="url(#chandelierGlow)"/>
+
+    <!-- ── Back wall – wood paneling ── -->
+    <rect x="0" y="60" width="1440" height="560" fill="url(#woodWall)"/>
+
+    <!-- Horizontal dado rail -->
+    <rect x="0" y="300" width="1440" height="14" fill="#5c3a18"/>
+    <rect x="0" y="300" width="1440" height="3"  fill="#c8a84b" opacity="0.4"/>
+    <rect x="0" y="311" width="1440" height="3"  fill="#c8a84b" opacity="0.2"/>
+
+    <!-- Upper wall panels (recessed) -->
+    <rect x="30"   y="80" width="200" height="205" rx="3" fill="#1e1208" opacity="0.6"/>
+    <rect x="36"   y="86" width="188" height="193" rx="2" fill="#251609" opacity="0.4"/>
+    <rect x="250"  y="80" width="200" height="205" rx="3" fill="#1e1208" opacity="0.6"/>
+    <rect x="256"  y="86" width="188" height="193" rx="2" fill="#251609" opacity="0.4"/>
+    <rect x="470"  y="80" width="200" height="205" rx="3" fill="#1e1208" opacity="0.6"/>
+    <rect x="476"  y="86" width="188" height="193" rx="2" fill="#251609" opacity="0.4"/>
+    <rect x="690"  y="80" width="260" height="205" rx="3" fill="#1e1208" opacity="0.6"/>
+    <rect x="696"  y="86" width="248" height="193" rx="2" fill="#251609" opacity="0.4"/>
+    <rect x="970"  y="80" width="200" height="205" rx="3" fill="#1e1208" opacity="0.6"/>
+    <rect x="976"  y="86" width="188" height="193" rx="2" fill="#251609" opacity="0.4"/>
+    <rect x="1190" y="80" width="200" height="205" rx="3" fill="#1e1208" opacity="0.6"/>
+    <rect x="1196" y="86" width="188" height="193" rx="2" fill="#251609" opacity="0.4"/>
+
+    <!-- Lower wall panels -->
+    <rect x="30"   y="322" width="200" height="150" rx="3" fill="#1e1208" opacity="0.5"/>
+    <rect x="36"   y="328" width="188" height="138" rx="2" fill="#251609" opacity="0.3"/>
+    <rect x="250"  y="322" width="200" height="150" rx="3" fill="#1e1208" opacity="0.5"/>
+    <rect x="470"  y="322" width="200" height="150" rx="3" fill="#1e1208" opacity="0.5"/>
+    <rect x="690"  y="322" width="260" height="150" rx="3" fill="#1e1208" opacity="0.5"/>
+    <rect x="970"  y="322" width="200" height="150" rx="3" fill="#1e1208" opacity="0.5"/>
+    <rect x="1190" y="322" width="200" height="150" rx="3" fill="#1e1208" opacity="0.5"/>
+
+    <!-- Wood grain lines on walls -->
+    <g opacity="0.12" filter="url(#woodBlur)">
+      <line x1="60"   y1="60"  x2="58"   y2="620" stroke="#d4a060" stroke-width="1"/>
+      <line x1="180"  y1="60"  x2="182"  y2="620" stroke="#d4a060" stroke-width="0.8"/>
+      <line x1="320"  y1="60"  x2="318"  y2="620" stroke="#c89050" stroke-width="1"/>
+      <line x1="450"  y1="60"  x2="452"  y2="620" stroke="#d4a060" stroke-width="0.8"/>
+      <line x1="580"  y1="60"  x2="578"  y2="620" stroke="#d4a060" stroke-width="1"/>
+      <line x1="720"  y1="60"  x2="722"  y2="620" stroke="#c89050" stroke-width="1.2"/>
+      <line x1="860"  y1="60"  x2="858"  y2="620" stroke="#d4a060" stroke-width="0.8"/>
+      <line x1="990"  y1="60"  x2="992"  y2="620" stroke="#d4a060" stroke-width="1"/>
+      <line x1="1120" y1="60"  x2="1118" y2="620" stroke="#c89050" stroke-width="0.8"/>
+      <line x1="1260" y1="60"  x2="1262" y2="620" stroke="#d4a060" stroke-width="1"/>
+      <line x1="1380" y1="60"  x2="1378" y2="620" stroke="#d4a060" stroke-width="0.8"/>
+    </g>
+
+    <!-- ══ WINDOWS ══ -->
+    <!-- Left window -->
+    <rect x="60" y="90" width="170" height="190" rx="4" fill="url(#windowGlass)"/>
+    <rect x="60" y="90" width="170" height="190" rx="4" fill="none" stroke="#8a6030" stroke-width="4"/>
+    <!-- Window cross bars -->
+    <line x1="145" y1="90" x2="145" y2="280" stroke="#8a6030" stroke-width="3"/>
+    <line x1="60"  y1="185" x2="230" y2="185" stroke="#8a6030" stroke-width="3"/>
+    <!-- Light shaft from left window -->
+    <polygon points="60,90 230,90 340,500 -60,500" fill="url(#windowLight)" opacity="0.4"/>
+
+    <!-- Right window -->
+    <rect x="1210" y="90" width="170" height="190" rx="4" fill="url(#windowGlass)"/>
+    <rect x="1210" y="90" width="170" height="190" rx="4" fill="none" stroke="#8a6030" stroke-width="4"/>
+    <line x1="1295" y1="90"  x2="1295" y2="280" stroke="#8a6030" stroke-width="3"/>
+    <line x1="1210" y1="185" x2="1380" y2="185" stroke="#8a6030" stroke-width="3"/>
+    <!-- Light shaft from right window -->
+    <polygon points="1210,90 1380,90 1500,500 1100,500" fill="url(#windowLight)" opacity="0.4"/>
+
+    <!-- ══ SEAL / EMBLEM on back wall ══ -->
+    <circle cx="720" cy="180" r="52" fill="#1a1006" stroke="#c8a84b" stroke-width="2.5" opacity="0.9"/>
+    <circle cx="720" cy="180" r="44" fill="none" stroke="#c8a84b" stroke-width="1" opacity="0.5"/>
+    <!-- Scale of justice symbol -->
+    <line x1="720" y1="148" x2="720" y2="212" stroke="#c8a84b" stroke-width="2" opacity="0.8"/>
+    <line x1="696" y1="162" x2="744" y2="162" stroke="#c8a84b" stroke-width="2" opacity="0.8"/>
+    <circle cx="696" cy="175" r="10" fill="none" stroke="#c8a84b" stroke-width="1.5" opacity="0.7"/>
+    <circle cx="744" cy="175" r="10" fill="none" stroke="#c8a84b" stroke-width="1.5" opacity="0.7"/>
+    <line x1="696" y1="162" x2="696" y2="175" stroke="#c8a84b" stroke-width="1.5" opacity="0.7"/>
+    <line x1="744" y1="162" x2="744" y2="175" stroke="#c8a84b" stroke-width="1.5" opacity="0.7"/>
+    <!-- Crown/top of scale -->
+    <polygon points="720,146 724,152 716,152" fill="#c8a84b" opacity="0.8"/>
+
+    <!-- Text STATE OF CALIFORNIA -->
+    <text x="720" y="205" text-anchor="middle" font-family="Georgia,serif" font-size="7.5" letter-spacing="2" fill="#c8a84b" opacity="0.7">STATE OF CALIFORNIA</text>
+
+    <!-- ══ COLUMNS ══ -->
+    <!-- Left column -->
+    <rect x="270" y="60" width="28" height="560" fill="url(#columnGrad)"/>
+    <rect x="260" y="58"  width="48" height="14" fill="#4a3420"/>
+    <rect x="260" y="610" width="48" height="12" fill="#4a3420"/>
+    <!-- Column fluting -->
+    <line x1="278" y1="72" x2="278" y2="620" stroke="#6a4830" stroke-width="1" opacity="0.5"/>
+    <line x1="284" y1="72" x2="284" y2="620" stroke="#6a4830" stroke-width="1" opacity="0.5"/>
+    <line x1="290" y1="72" x2="290" y2="620" stroke="#3a2818" stroke-width="1" opacity="0.5"/>
+
+    <!-- Right column -->
+    <rect x="1142" y="60" width="28" height="560" fill="url(#columnGrad)"/>
+    <rect x="1132" y="58"  width="48" height="14" fill="#4a3420"/>
+    <rect x="1132" y="610" width="48" height="12" fill="#4a3420"/>
+    <line x1="1150" y1="72" x2="1150" y2="620" stroke="#6a4830" stroke-width="1" opacity="0.5"/>
+    <line x1="1156" y1="72" x2="1156" y2="620" stroke="#6a4830" stroke-width="1" opacity="0.5"/>
+    <line x1="1162" y1="72" x2="1162" y2="620" stroke="#3a2818" stroke-width="1" opacity="0.5"/>
+
+    <!-- Center columns flanking bench -->
+    <rect x="520" y="200" width="22" height="420" fill="url(#columnGrad)" opacity="0.85"/>
+    <rect x="512" y="198" width="38" height="12" fill="#4a3420"/>
+    <rect x="898" y="200" width="22" height="420" fill="url(#columnGrad)" opacity="0.85"/>
+    <rect x="890" y="198" width="38" height="12" fill="#4a3420"/>
+
+    <!-- ══ FLAGS ══ -->
+    <!-- US Flag - left -->
+    <rect x="320" y="80" width="4" height="160" fill="#6a4820"/>
+    <rect x="324" y="80" width="72" height="50" fill="#b22234"/>
+    <rect x="324" y="87" width="72" height="7"  fill="#ffffff"/>
+    <rect x="324" y="101" width="72" height="7" fill="#ffffff"/>
+    <rect x="324" y="115" width="72" height="7" fill="#ffffff"/>
+    <rect x="324" y="122" width="72" height="7" fill="#b22234"/>
+    <rect x="324" y="80"  width="30" height="28" fill="#3c3b6e"/>
+    <!-- Stars hint -->
+    <circle cx="329" cy="85"  r="1.2" fill="white" opacity="0.9"/>
+    <circle cx="336" cy="85"  r="1.2" fill="white" opacity="0.9"/>
+    <circle cx="343" cy="85"  r="1.2" fill="white" opacity="0.9"/>
+    <circle cx="350" cy="85"  r="1.2" fill="white" opacity="0.9"/>
+    <circle cx="329" cy="91"  r="1.2" fill="white" opacity="0.9"/>
+    <circle cx="336" cy="91"  r="1.2" fill="white" opacity="0.9"/>
+    <circle cx="343" cy="91"  r="1.2" fill="white" opacity="0.9"/>
+    <circle cx="329" cy="97"  r="1.2" fill="white" opacity="0.9"/>
+    <circle cx="336" cy="97"  r="1.2" fill="white" opacity="0.9"/>
+    <circle cx="343" cy="97"  r="1.2" fill="white" opacity="0.9"/>
+    <circle cx="350" cy="97"  r="1.2" fill="white" opacity="0.9"/>
+
+    <!-- CA State Flag - right -->
+    <rect x="1096" y="80" width="4" height="160" fill="#6a4820"/>
+    <rect x="1100" y="80" width="72" height="50" fill="#fff5e6"/>
+    <rect x="1100" y="80" width="72" height="35" fill="#d4e8f0" opacity="0.5"/>
+    <!-- Bear silhouette (simplified) -->
+    <ellipse cx="1132" cy="113" rx="14" ry="10" fill="#8B4513" opacity="0.85"/>
+    <circle  cx="1143" cy="107" r="6"   fill="#8B4513" opacity="0.85"/>
+    <circle  cx="1147" cy="105" r="3"   fill="#8B4513" opacity="0.85"/>
+    <rect x="1118" y="120" width="6" height="10" rx="2" fill="#8B4513" opacity="0.85"/>
+    <rect x="1127" y="120" width="6" height="10" rx="2" fill="#8B4513" opacity="0.85"/>
+    <rect x="1136" y="120" width="6" height="10" rx="2" fill="#8B4513" opacity="0.85"/>
+    <rect x="1145" y="120" width="6" height="10" rx="2" fill="#8B4513" opacity="0.85"/>
+    <!-- CALIFORNIA text on flag -->
+    <text x="1136" y="127" text-anchor="middle" font-family="Georgia,serif" font-size="6" fill="#b22234" opacity="0.8">CALIFORNIA</text>
+    <!-- Red stripe at bottom of CA flag -->
+    <rect x="1100" y="124" width="72" height="6" fill="#b22234"/>
+
+    <!-- ══ JUDGE'S BENCH ══ -->
+    <!-- Raised platform steps -->
+    <rect x="0"   y="580" width="1440" height="20" fill="#2a1a0a"/>
+    <rect x="200" y="560" width="1040" height="20" fill="#3a2410"/>
+    <rect x="350" y="540" width="740"  height="22" fill="#4a2e14"/>
+
+    <!-- Bench main body -->
+    <rect x="380" y="430" width="680" height="115" rx="6" fill="url(#benchGrad)"/>
+    <!-- Bench top surface -->
+    <rect x="370" y="426" width="700" height="14" rx="3" fill="#8a5a28"/>
+    <rect x="375" y="428" width="690" height="6"  rx="2" fill="#a06830" opacity="0.6"/>
+    <!-- Bench front panels -->
+    <rect x="390" y="445" width="155" height="95" rx="2" fill="#3a2410" opacity="0.5"/>
+    <rect x="555" y="445" width="155" height="95" rx="2" fill="#3a2410" opacity="0.5"/>
+    <rect x="720" y="445" width="155" height="95" rx="2" fill="#3a2410" opacity="0.5"/>
+    <rect x="885" y="445" width="155" height="95" rx="2" fill="#3a2410" opacity="0.5"/>
+    <!-- Bench molding -->
+    <rect x="380" y="540" width="680" height="6" fill="#7a4e22"/>
+    <rect x="380" y="432" width="680" height="4" fill="#c8a84b" opacity="0.3"/>
+
+    <!-- Judge's chair (high-back) -->
+    <rect x="680" y="360" width="80" height="80" rx="4" fill="#2a1a0a"/>
+    <rect x="675" y="355" width="90" height="12" rx="3" fill="#3a2410"/>
+    <rect x="680" y="400" width="80" height="35" rx="2" fill="#4a2e14"/>
+    <!-- Chair top ornament -->
+    <polygon points="720,348 726,360 714,360" fill="#c8a84b" opacity="0.6"/>
+    <rect x="718" y="344" width="4" height="6" fill="#c8a84b" opacity="0.6"/>
+
+    <!-- ══ COUNSEL TABLES ══ -->
+    <!-- Plaintiff table (left) -->
+    <rect x="450" y="510" width="220" height="55" rx="4" fill="#3a2410"/>
+    <rect x="450" y="507" width="220" height="8" rx="3" fill="#5a3818"/>
+    <!-- Table legs -->
+    <rect x="455" y="562" width="12" height="30" fill="#2a1808"/>
+    <rect x="650" y="562" width="12" height="30" fill="#2a1808"/>
+
+    <!-- Defense table (right) -->
+    <rect x="770" y="510" width="220" height="55" rx="4" fill="#3a2410"/>
+    <rect x="770" y="507" width="220" height="8" rx="3" fill="#5a3818"/>
+    <rect x="775" y="562" width="12" height="30" fill="#2a1808"/>
+    <rect x="970" y="562" width="12" height="30" fill="#2a1808"/>
+
+    <!-- ══ GALLERY PEWS (foreground) ══ -->
+    <!-- Pew row 1 -->
+    <rect x="0"   y="650" width="440"  height="40" rx="3" fill="url(#pewGrad)"/>
+    <rect x="0"   y="648" width="440"  height="6"  rx="2" fill="#5a3818"/>
+    <rect x="1000" y="650" width="440" height="40" rx="3" fill="url(#pewGrad)"/>
+    <rect x="1000" y="648" width="440" height="6"  rx="2" fill="#5a3818"/>
+
+    <!-- Pew row 2 -->
+    <rect x="0"   y="710" width="440"  height="45" rx="3" fill="url(#pewGrad)" opacity="0.9"/>
+    <rect x="0"   y="708" width="440"  height="6"  rx="2" fill="#5a3818"/>
+    <rect x="1000" y="710" width="440" height="45" rx="3" fill="url(#pewGrad)" opacity="0.9"/>
+    <rect x="1000" y="708" width="440" height="6"  rx="2" fill="#5a3818"/>
+
+    <!-- Pew row 3 -->
+    <rect x="0"   y="775" width="440"  height="50" rx="3" fill="url(#pewGrad)" opacity="0.7"/>
+    <rect x="0"   y="773" width="440"  height="6"  rx="2" fill="#5a3818"/>
+    <rect x="1000" y="775" width="440" height="50" rx="3" fill="url(#pewGrad)" opacity="0.7"/>
+    <rect x="1000" y="773" width="440" height="6"  rx="2" fill="#5a3818"/>
+
+    <!-- Pew divider rail (center aisle rail) -->
+    <rect x="435" y="640" width="12" height="200" fill="#3a2410"/>
+    <rect x="993" y="640" width="12" height="200" fill="#3a2410"/>
+
+    <!-- ══ FLOOR ══ -->
+    <rect x="0" y="595" width="1440" height="305" fill="url(#woodFloor)"/>
+    <!-- Floor planks -->
+    <g opacity="0.18" filter="url(#woodBlur)">
+      <line x1="0" y1="620" x2="1440" y2="620" stroke="#d4a060" stroke-width="1"/>
+      <line x1="0" y1="635" x2="1440" y2="635" stroke="#d4a060" stroke-width="0.7"/>
+      <line x1="0" y1="650" x2="1440" y2="650" stroke="#d4a060" stroke-width="1"/>
+      <line x1="0" y1="668" x2="1440" y2="668" stroke="#d4a060" stroke-width="0.7"/>
+      <line x1="0" y1="685" x2="1440" y2="685" stroke="#d4a060" stroke-width="1"/>
+      <line x1="0" y1="705" x2="1440" y2="705" stroke="#d4a060" stroke-width="1"/>
+      <line x1="0" y1="725" x2="1440" y2="725" stroke="#d4a060" stroke-width="0.7"/>
+      <line x1="0" y1="748" x2="1440" y2="748" stroke="#d4a060" stroke-width="1"/>
+      <line x1="0" y1="770" x2="1440" y2="770" stroke="#d4a060" stroke-width="0.7"/>
+      <line x1="0" y1="795" x2="1440" y2="795" stroke="#d4a060" stroke-width="1"/>
+      <line x1="0" y1="822" x2="1440" y2="822" stroke="#d4a060" stroke-width="0.7"/>
+      <line x1="0" y1="850" x2="1440" y2="850" stroke="#d4a060" stroke-width="1"/>
+    </g>
+    <!-- Vertical floor planks -->
+    <g opacity="0.10" filter="url(#woodBlur)">
+      <line x1="120" y1="595" x2="120" y2="900" stroke="#d4a060" stroke-width="1"/>
+      <line x1="240" y1="595" x2="240" y2="900" stroke="#d4a060" stroke-width="1"/>
+      <line x1="360" y1="595" x2="360" y2="900" stroke="#d4a060" stroke-width="1"/>
+      <line x1="480" y1="595" x2="480" y2="900" stroke="#d4a060" stroke-width="1"/>
+      <line x1="600" y1="595" x2="600" y2="900" stroke="#d4a060" stroke-width="1"/>
+      <line x1="720" y1="595" x2="720" y2="900" stroke="#d4a060" stroke-width="1"/>
+      <line x1="840" y1="595" x2="840" y2="900" stroke="#d4a060" stroke-width="1"/>
+      <line x1="960" y1="595" x2="960" y2="900" stroke="#d4a060" stroke-width="1"/>
+      <line x1="1080" y1="595" x2="1080" y2="900" stroke="#d4a060" stroke-width="1"/>
+      <line x1="1200" y1="595" x2="1200" y2="900" stroke="#d4a060" stroke-width="1"/>
+      <line x1="1320" y1="595" x2="1320" y2="900" stroke="#d4a060" stroke-width="1"/>
+    </g>
+
+    <!-- ══ CHANDELIER ══ -->
+    <line x1="720" y1="0" x2="720" y2="65" stroke="#8a6030" stroke-width="4"/>
+    <ellipse cx="720" cy="68" rx="60" ry="14" fill="none" stroke="#c8a84b" stroke-width="3" opacity="0.8"/>
+    <!-- Chandelier arms -->
+    <line x1="660" y1="68" x2="645" y2="90" stroke="#c8a84b" stroke-width="2" opacity="0.8"/>
+    <line x1="680" y1="68" x2="672" y2="90" stroke="#c8a84b" stroke-width="2" opacity="0.8"/>
+    <line x1="720" y1="82" x2="720" y2="95" stroke="#c8a84b" stroke-width="2" opacity="0.8"/>
+    <line x1="760" y1="68" x2="768" y2="90" stroke="#c8a84b" stroke-width="2" opacity="0.8"/>
+    <line x1="780" y1="68" x2="795" y2="90" stroke="#c8a84b" stroke-width="2" opacity="0.8"/>
+    <!-- Chandelier lights -->
+    <ellipse cx="645" cy="93" rx="5" ry="8" fill="#fff5cc" opacity="0.9" filter="url(#glow)"/>
+    <ellipse cx="672" cy="93" rx="5" ry="8" fill="#fff5cc" opacity="0.9" filter="url(#glow)"/>
+    <ellipse cx="720" cy="98" rx="5" ry="8" fill="#fff5cc" opacity="0.9" filter="url(#glow)"/>
+    <ellipse cx="768" cy="93" rx="5" ry="8" fill="#fff5cc" opacity="0.9" filter="url(#glow)"/>
+    <ellipse cx="795" cy="93" rx="5" ry="8" fill="#fff5cc" opacity="0.9" filter="url(#glow)"/>
+    <!-- Glow halos -->
+    <circle cx="645" cy="93" r="14" fill="#d4a84b" opacity="0.15"/>
+    <circle cx="672" cy="93" r="14" fill="#d4a84b" opacity="0.15"/>
+    <circle cx="720" cy="98" r="16" fill="#d4a84b" opacity="0.18"/>
+    <circle cx="768" cy="93" r="14" fill="#d4a84b" opacity="0.15"/>
+    <circle cx="795" cy="93" r="14" fill="#d4a84b" opacity="0.15"/>
+
+    <!-- ══ WITNESS BOX ══ -->
+    <rect x="542" y="480" width="90" height="65" rx="3" fill="#2e1c0c"/>
+    <rect x="542" y="478" width="90" height="8"  rx="2" fill="#4a2e14"/>
+
+    <!-- ══ Overall bottom-to-top foreground vignette ══ -->
+    <rect x="0" y="0" width="1440" height="900"
+      fill="url(#ceilGrad)" opacity="0" />
+    <!-- Side vignettes -->
+    <rect x="0"    y="0" width="120" height="900" fill="url(#woodWall)" opacity="0.45"/>
+    <rect x="1320" y="0" width="120" height="900" fill="url(#woodWall)" opacity="0.45"/>
+  </svg>
 
   <!-- Profile -->
   <div class="profile">
