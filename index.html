@@ -140,6 +140,24 @@
   <meta name="ai:entity:attorney" content="Mark Gonzales, Esq." />
   <meta name="ai:entity:specialty" content="Car Accident Lawyer Near Me, Personal Injury Attorney Near Me" />
   <meta name="ai:entity:nearme" content="car accident lawyer near me, personal injury lawyer near me, accident attorney near me" />
+  <!-- Google Maps / local pack near-me signals -->
+  <meta name="maps:place_name" content="Gonzales Law Offices — Car Accident Lawyer" />
+  <meta name="maps:place_type" content="law_firm" />
+  <meta name="maps:address" content="7337 East Ave, Suite E, Fontana, CA 92336" />
+  <meta name="maps:latitude" content="34.120672" />
+  <meta name="maps:longitude" content="-117.515301" />
+  <meta name="maps:phone" content="+1-888-232-2898" />
+  <meta name="maps:hours" content="Open 24 hours" />
+  <meta name="maps:rating" content="4.9" />
+  <meta name="maps:review_count" content="202" />
+  <meta name="place:location:latitude" content="34.120672" />
+  <meta name="place:location:longitude" content="-117.515301" />
+  <meta name="business:contact_data:latitude" content="34.120672" />
+  <meta name="business:contact_data:longitude" content="-117.515301" />
+  <!-- Alternate office locations for multi-location signals -->
+  <meta name="place:location:secondary" content="34.096500,-117.277000|San Bernardino CA 92408" />
+  <meta name="place:location:secondary" content="34.065210,-117.649200|Ontario CA 91764" />
+  <meta name="place:location:secondary" content="34.125430,-117.563900|Rancho Cucamonga CA 91739" />
   <meta name="ai:entity:location" content="Fontana CA 92336, San Bernardino CA 92408, Ontario CA 91764, Rancho Cucamonga CA 91739, Inland Empire CA, Southern California" />
   <meta name="ai:entity:serviceArea" content="Fontana, San Bernardino, Ontario, Rancho Cucamonga, Riverside, Los Angeles, Colton, Rialto, Redlands, Bloomington, Muscoy, Highland, Loma Linda, Yucaipa, Upland, Chino, Montclair, Pomona, Corona, Moreno Valley" />
   <meta name="ai:entity:phone" content="1-888-232-2898" />
@@ -1134,14 +1152,22 @@
       },
 
       {
-        "@type": "LocalBusiness",
+        "@type": ["LocalBusiness", "LegalService", "Attorney"],
         "@id": "https://www.gonzaleslawoffices.com/#office-fontana",
-        "name": "Gonzales Law Offices — Fontana (HQ)",
-        "description": "Primary headquarters of Gonzales Law Offices. Car accident and personal injury law firm in Fontana CA. Free 24/7 consultations.",
+        "name": "Gonzales Law Offices — Car Accident Lawyer Fontana CA",
+        "alternateName": ["Gonzales Law Offices Fontana", "Car Accident Lawyer Fontana", "Personal Injury Lawyer Fontana CA"],
+        "description": "Top-rated car accident and personal injury law firm in Fontana, CA. Led by attorney Mark Gonzales, Esq. (CA Bar #249340). 4.9 stars · 202 reviews · $100M+ recovered. Free 24/7 consultations. No fee unless we win.",
         "url": "https://www.gonzaleslawoffices.com/",
         "telephone": "+18882322898",
+        "faxNumber": "+19094065099",
+        "email": "contact@gonzaleslawoffices.com",
+        "priceRange": "Free Consultation — No Fee Unless We Win",
+        "currenciesAccepted": "USD",
+        "paymentAccepted": "Contingency Fee",
         "openingHours": "Mo-Su 00:00-23:59",
-        "priceRange": "Free Consultation",
+        "openingHoursSpecification": [
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "00:00", "closes": "23:59" }
+        ],
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "7337 East Ave, Suite E",
@@ -1151,20 +1177,79 @@
           "addressCountry": "US"
         },
         "geo": { "@type": "GeoCoordinates", "latitude": "34.120672", "longitude": "-117.515301" },
-        "hasMap": "https://maps.google.com/?q=7337+East+Ave+Suite+E+Fontana+CA+92336",
+        "hasMap": [
+          "https://maps.google.com/?cid=1748979024148856255",
+          "https://www.google.com/maps/place/Gonzales+Law+Offices+-+Attorney+Mark+Gonzales/@34.1206724,-117.5153006,17z",
+          "https://maps.google.com/?q=7337+East+Ave+Suite+E+Fontana+CA+92336"
+        ],
+        "photo": [
+          { "@type": "ImageObject", "url": "https://links.gonzaleslawoffices.com/photos/frm-lft-img.webp", "caption": "Gonzales Law Offices Fontana — Interior" },
+          { "@type": "ImageObject", "url": "https://links.gonzaleslawoffices.com/photos/atrny.webp", "caption": "Attorney Mark Gonzales, Esq. — Car Accident Lawyer Fontana CA" },
+          { "@type": "ImageObject", "url": "https://links.gonzaleslawoffices.com/logo.jpg", "caption": "Gonzales Law Offices Logo" }
+        ],
+        "image": [
+          "https://links.gonzaleslawoffices.com/photos/frm-lft-img.webp",
+          "https://links.gonzaleslawoffices.com/photos/atrny.webp",
+          "https://links.gonzaleslawoffices.com/logo.jpg"
+        ],
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://links.gonzaleslawoffices.com/logo.jpg",
+          "width": 800, "height": 800
+        },
+        "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "Wheelchair Accessible", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Free Parking", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Spanish Speaking Staff", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Free Consultations", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "24/7 Availability", "value": true }
+        ],
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": { "@type": "GeoCoordinates", "latitude": "34.120672", "longitude": "-117.515301" },
+          "geoRadius": "80000"
+        },
+        "areaServed": [
+          "Fontana CA 92336", "San Bernardino CA 92408", "Ontario CA 91764", "Rancho Cucamonga CA 91739",
+          "Rialto CA 92376", "Colton CA 92324", "Redlands CA 92373", "Highland CA 92346",
+          "Bloomington CA 92316", "Loma Linda CA 92354", "Yucaipa CA 92399",
+          "Upland CA 91786", "Chino CA 91710", "Chino Hills CA 91709", "Montclair CA 91763",
+          "Victorville CA 92395", "Hesperia CA 92345", "Apple Valley CA 92308",
+          "Riverside CA 92501", "Moreno Valley CA 92553", "Corona CA 92882",
+          "Perris CA 92570", "Hemet CA 92543", "Temecula CA 92590", "Murrieta CA 92562"
+        ],
+        "brand": { "@type": "Brand", "name": "Gonzales Law Offices", "logo": "https://links.gonzaleslawoffices.com/logo.jpg" },
+        "knowsAbout": ["Car Accident Law", "Personal Injury Fontana CA", "Truck Accident I-10 I-15", "Slip and Fall", "Wrongful Death California"],
+        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "202", "bestRating": "5", "worstRating": "1" },
+        "review": [
+          { "@type": "Review", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }, "author": { "@type": "Person", "name": "Robert R." }, "reviewBody": "I could not be more happy with the help Mark Gonzales provided. He was there for me every step of the way and made sure I got the best possible outcome for my case." },
+          { "@type": "Review", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }, "author": { "@type": "Person", "name": "April F." }, "reviewBody": "Mark helped me recover all my expenses due to my car accident. He was very professional and kept me informed throughout the whole process. Highly recommend!" }
+        ],
         "parentOrganization": { "@id": "https://www.gonzaleslawoffices.com/#organization" },
-        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "202", "bestRating": "5" }
+        "sameAs": [
+          "https://www.google.com/maps/place/Gonzales+Law+Offices+-+Attorney+Mark+Gonzales/@34.1206724,-117.5153006,17z",
+          "https://www.yelp.com/biz/gonzales-law-offices-fontana",
+          "https://www.facebook.com/people/Gonzales-Law-Offices/61567560268585/",
+          "https://www.avvo.com/attorneys/92336-ca-mark-gonzales-4244432.html"
+        ]
       },
 
       {
-        "@type": "LocalBusiness",
+        "@type": ["LocalBusiness", "LegalService", "Attorney"],
         "@id": "https://www.gonzaleslawoffices.com/#office-sanbernardino",
-        "name": "Gonzales Law Offices — San Bernardino",
-        "description": "Gonzales Law Offices San Bernardino office. Car accident lawyer serving San Bernardino and surrounding areas on I-215, Highland Ave, and Waterman Ave.",
+        "name": "Gonzales Law Offices — Car Accident Lawyer San Bernardino CA",
+        "alternateName": ["Gonzales Law Offices San Bernardino", "Car Accident Lawyer San Bernardino", "Personal Injury Attorney San Bernardino CA"],
+        "description": "Gonzales Law Offices San Bernardino office at 2627 S Waterman Ave. Car accident lawyer serving San Bernardino on I-215, Highland Ave, Waterman Ave, and Mt Vernon Ave. Free 24/7 consultations.",
         "url": "https://www.gonzaleslawoffices.com/",
         "telephone": "+19094065099",
+        "alternateTelephone": "+18882322898",
+        "email": "contact@gonzaleslawoffices.com",
+        "priceRange": "Free Consultation — No Fee Unless We Win",
+        "paymentAccepted": "Contingency Fee",
         "openingHours": "Mo-Su 00:00-23:59",
-        "priceRange": "Free Consultation",
+        "openingHoursSpecification": [
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "00:00", "closes": "23:59" }
+        ],
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "2627 S Waterman Ave, Suite D",
@@ -1174,19 +1259,52 @@
           "addressCountry": "US"
         },
         "geo": { "@type": "GeoCoordinates", "latitude": "34.096500", "longitude": "-117.277000" },
-        "hasMap": "https://maps.google.com/?q=2627+S+Waterman+Ave+Suite+D+San+Bernardino+CA+92408",
-        "parentOrganization": { "@id": "https://www.gonzaleslawoffices.com/#organization" }
+        "hasMap": [
+          "https://www.google.com/maps/place/Gonzales+Law+Offices+-+Attorney+Mark+Gonzales/@34.0965,-117.277,17z",
+          "https://maps.google.com/?q=2627+S+Waterman+Ave+Suite+D+San+Bernardino+CA+92408"
+        ],
+        "photo": [
+          { "@type": "ImageObject", "url": "https://links.gonzaleslawoffices.com/photos/abt-lft-img.webp", "caption": "Gonzales Law Offices San Bernardino" },
+          { "@type": "ImageObject", "url": "https://links.gonzaleslawoffices.com/photos/atrny-1.webp", "caption": "Attorney Mark Gonzales" }
+        ],
+        "image": ["https://links.gonzaleslawoffices.com/photos/abt-lft-img.webp", "https://links.gonzaleslawoffices.com/logo.jpg"],
+        "logo": { "@type": "ImageObject", "url": "https://links.gonzaleslawoffices.com/logo.jpg" },
+        "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "Wheelchair Accessible", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Free Parking", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Spanish Speaking Staff", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Free Consultations", "value": true }
+        ],
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": { "@type": "GeoCoordinates", "latitude": "34.096500", "longitude": "-117.277000" },
+          "geoRadius": "40000"
+        },
+        "areaServed": ["San Bernardino CA 92408", "Highland CA 92346", "Colton CA 92324", "Loma Linda CA 92354", "Redlands CA 92373", "Bloomington CA 92316", "Rialto CA 92376"],
+        "brand": { "@type": "Brand", "name": "Gonzales Law Offices" },
+        "parentOrganization": { "@id": "https://www.gonzaleslawoffices.com/#organization" },
+        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "202", "bestRating": "5" },
+        "sameAs": [
+          "https://www.google.com/maps/place/Gonzales+Law+Offices+-+Attorney+Mark+Gonzales/@34.0965,-117.277,17z",
+          "https://www.yelp.com/biz/gonzales-law-offices-fontana"
+        ]
       },
 
       {
-        "@type": "LocalBusiness",
+        "@type": ["LocalBusiness", "LegalService", "Attorney"],
         "@id": "https://www.gonzaleslawoffices.com/#office-ontario",
-        "name": "Gonzales Law Offices — Ontario",
-        "description": "Gonzales Law Offices Ontario office. Car accident lawyer serving Ontario, Upland, Montclair, Chino, and the Ontario International Airport corridor.",
+        "name": "Gonzales Law Offices — Car Accident Lawyer Ontario CA",
+        "alternateName": ["Gonzales Law Offices Ontario", "Car Accident Lawyer Ontario CA", "Personal Injury Attorney Ontario CA"],
+        "description": "Gonzales Law Offices Ontario office at 500 East E Street. Car accident lawyer serving Ontario, Upland, Montclair, Chino, and the Ontario International Airport (ONT) corridor on I-10 and I-15. Free 24/7 consultations.",
         "url": "https://www.gonzaleslawoffices.com/",
         "telephone": "+18882322898",
+        "email": "contact@gonzaleslawoffices.com",
+        "priceRange": "Free Consultation — No Fee Unless We Win",
+        "paymentAccepted": "Contingency Fee",
         "openingHours": "Mo-Su 00:00-23:59",
-        "priceRange": "Free Consultation",
+        "openingHoursSpecification": [
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "00:00", "closes": "23:59" }
+        ],
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "500 East E Street",
@@ -1196,19 +1314,52 @@
           "addressCountry": "US"
         },
         "geo": { "@type": "GeoCoordinates", "latitude": "34.065210", "longitude": "-117.649200" },
-        "hasMap": "https://maps.google.com/?q=500+East+E+Street+Ontario+CA+91764",
-        "parentOrganization": { "@id": "https://www.gonzaleslawoffices.com/#organization" }
+        "hasMap": [
+          "https://www.google.com/maps/place/Gonzales+Law+Offices+-+Attorney+Mark+Gonzales/@34.06521,-117.6492,17z",
+          "https://maps.google.com/?q=500+East+E+Street+Ontario+CA+91764"
+        ],
+        "photo": [
+          { "@type": "ImageObject", "url": "https://links.gonzaleslawoffices.com/photos/attrney-lft-img.webp", "caption": "Gonzales Law Offices Ontario CA" },
+          { "@type": "ImageObject", "url": "https://links.gonzaleslawoffices.com/logo.jpg", "caption": "Gonzales Law Offices Logo" }
+        ],
+        "image": ["https://links.gonzaleslawoffices.com/photos/attrney-lft-img.webp", "https://links.gonzaleslawoffices.com/logo.jpg"],
+        "logo": { "@type": "ImageObject", "url": "https://links.gonzaleslawoffices.com/logo.jpg" },
+        "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "Wheelchair Accessible", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Free Parking", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Spanish Speaking Staff", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Free Consultations", "value": true }
+        ],
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": { "@type": "GeoCoordinates", "latitude": "34.065210", "longitude": "-117.649200" },
+          "geoRadius": "40000"
+        },
+        "areaServed": ["Ontario CA 91764", "Upland CA 91786", "Montclair CA 91763", "Chino CA 91710", "Chino Hills CA 91709", "Pomona CA 91766", "Rancho Cucamonga CA 91739"],
+        "brand": { "@type": "Brand", "name": "Gonzales Law Offices" },
+        "parentOrganization": { "@id": "https://www.gonzaleslawoffices.com/#organization" },
+        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "202", "bestRating": "5" },
+        "sameAs": [
+          "https://www.google.com/maps/place/Gonzales+Law+Offices+-+Attorney+Mark+Gonzales/@34.06521,-117.6492,17z",
+          "https://www.yelp.com/biz/gonzales-law-offices-fontana"
+        ]
       },
 
       {
-        "@type": "LocalBusiness",
+        "@type": ["LocalBusiness", "LegalService", "Attorney"],
         "@id": "https://www.gonzaleslawoffices.com/#office-rc",
-        "name": "Gonzales Law Offices — Rancho Cucamonga",
-        "description": "Gonzales Law Offices Rancho Cucamonga office. Car accident lawyer serving Rancho Cucamonga, Etiwanda, Fontana East, and the Foothill Blvd corridor.",
+        "name": "Gonzales Law Offices — Car Accident Lawyer Rancho Cucamonga CA",
+        "alternateName": ["Gonzales Law Offices Rancho Cucamonga", "Car Accident Lawyer Rancho Cucamonga", "Personal Injury Attorney Rancho Cucamonga CA"],
+        "description": "Gonzales Law Offices Rancho Cucamonga office at 12365 Foothill Blvd, Suite 105. Car accident lawyer serving Rancho Cucamonga, Etiwanda, Alta Loma, and Fontana East on Foothill Blvd, I-10, and I-15. Free 24/7 consultations.",
         "url": "https://www.gonzaleslawoffices.com/",
         "telephone": "+18882322898",
+        "email": "contact@gonzaleslawoffices.com",
+        "priceRange": "Free Consultation — No Fee Unless We Win",
+        "paymentAccepted": "Contingency Fee",
         "openingHours": "Mo-Su 00:00-23:59",
-        "priceRange": "Free Consultation",
+        "openingHoursSpecification": [
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "00:00", "closes": "23:59" }
+        ],
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "12365 Foothill Blvd, Suite 105",
@@ -1218,8 +1369,35 @@
           "addressCountry": "US"
         },
         "geo": { "@type": "GeoCoordinates", "latitude": "34.125430", "longitude": "-117.563900" },
-        "hasMap": "https://maps.google.com/?q=12365+Foothill+Blvd+Suite+105+Rancho+Cucamonga+CA+91739",
-        "parentOrganization": { "@id": "https://www.gonzaleslawoffices.com/#organization" }
+        "hasMap": [
+          "https://www.google.com/maps/place/Gonzales+Law+Offices+-+Attorney+Mark+Gonzales/@34.12543,-117.5639,17z",
+          "https://maps.google.com/?q=12365+Foothill+Blvd+Suite+105+Rancho+Cucamonga+CA+91739"
+        ],
+        "photo": [
+          { "@type": "ImageObject", "url": "https://links.gonzaleslawoffices.com/photos/frm-lft-logo.webp", "caption": "Gonzales Law Offices Rancho Cucamonga" },
+          { "@type": "ImageObject", "url": "https://links.gonzaleslawoffices.com/logo.jpg", "caption": "Gonzales Law Offices Logo" }
+        ],
+        "image": ["https://links.gonzaleslawoffices.com/photos/frm-lft-logo.webp", "https://links.gonzaleslawoffices.com/logo.jpg"],
+        "logo": { "@type": "ImageObject", "url": "https://links.gonzaleslawoffices.com/logo.jpg" },
+        "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "Wheelchair Accessible", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Free Parking", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Spanish Speaking Staff", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Free Consultations", "value": true }
+        ],
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": { "@type": "GeoCoordinates", "latitude": "34.125430", "longitude": "-117.563900" },
+          "geoRadius": "40000"
+        },
+        "areaServed": ["Rancho Cucamonga CA 91739", "Fontana CA 92336", "Upland CA 91786", "Etiwanda CA 91739", "Ontario CA 91764", "Claremont CA 91711", "Montclair CA 91763"],
+        "brand": { "@type": "Brand", "name": "Gonzales Law Offices" },
+        "parentOrganization": { "@id": "https://www.gonzaleslawoffices.com/#organization" },
+        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "202", "bestRating": "5" },
+        "sameAs": [
+          "https://www.google.com/maps/place/Gonzales+Law+Offices+-+Attorney+Mark+Gonzales/@34.12543,-117.5639,17z",
+          "https://www.yelp.com/biz/gonzales-law-offices-fontana"
+        ]
       },
 
       {
@@ -1346,6 +1524,68 @@
           "url": "https://www.calbar.ca.gov/"
         },
         "url": "https://www.gonzaleslawoffices.com/"
+      },
+
+      {
+        "@type": "Service",
+        "@id": "https://www.gonzaleslawoffices.com/#nearme-service",
+        "name": "Car Accident Lawyer Near Me — Gonzales Law Offices",
+        "alternateName": [
+          "Car accident attorney near me",
+          "Personal injury lawyer near me",
+          "Auto accident lawyer near me",
+          "Accident attorney near me California",
+          "Best car accident lawyer near me",
+          "Abogado de accidentes cerca de mi"
+        ],
+        "description": "Gonzales Law Offices is the top-rated car accident lawyer near you in Fontana, San Bernardino, Ontario, and Rancho Cucamonga, California. With 4 office locations and 24/7 availability, we are always the car accident lawyer nearest to you in the Inland Empire and Southern California. Free consultations. No fee unless we win. Call 1-888-232-2898.",
+        "serviceType": "Personal Injury & Car Accident Legal Representation",
+        "provider": { "@id": "https://www.gonzaleslawoffices.com/#organization" },
+        "areaServed": [
+          {
+            "@type": "GeoCircle",
+            "geoMidpoint": { "@type": "GeoCoordinates", "latitude": "34.120672", "longitude": "-117.515301" },
+            "geoRadius": "160934",
+            "description": "100-mile service radius from Fontana HQ covering all of Southern California"
+          },
+          { "@type": "AdministrativeArea", "name": "San Bernardino County, California" },
+          { "@type": "AdministrativeArea", "name": "Riverside County, California" },
+          { "@type": "AdministrativeArea", "name": "Los Angeles County, California" },
+          { "@type": "AdministrativeArea", "name": "Orange County, California" }
+        ],
+        "availableAtOrFrom": [
+          { "@id": "https://www.gonzaleslawoffices.com/#office-fontana" },
+          { "@id": "https://www.gonzaleslawoffices.com/#office-sanbernardino" },
+          { "@id": "https://www.gonzaleslawoffices.com/#office-ontario" },
+          { "@id": "https://www.gonzaleslawoffices.com/#office-rc" }
+        ],
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Free 24/7 consultation. Contingency fee — no fee unless we win.",
+          "availability": "https://schema.org/InStock",
+          "availabilityEnds": "2099-12-31"
+        }
+      },
+
+      {
+        "@type": "Place",
+        "@id": "https://www.gonzaleslawoffices.com/#place-ie",
+        "name": "Inland Empire, California",
+        "description": "The Inland Empire is a metropolitan area in Southern California comprising San Bernardino County and Riverside County. Gonzales Law Offices serves the entire Inland Empire from 4 office locations.",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "33.6 -117.7 34.5 -116.5"
+        },
+        "containsPlace": [
+          { "@type": "City", "name": "Fontana", "containedInPlace": { "@type": "State", "name": "California" } },
+          { "@type": "City", "name": "San Bernardino", "containedInPlace": { "@type": "State", "name": "California" } },
+          { "@type": "City", "name": "Ontario", "containedInPlace": { "@type": "State", "name": "California" } },
+          { "@type": "City", "name": "Rancho Cucamonga", "containedInPlace": { "@type": "State", "name": "California" } },
+          { "@type": "City", "name": "Riverside", "containedInPlace": { "@type": "State", "name": "California" } },
+          { "@type": "City", "name": "Corona", "containedInPlace": { "@type": "State", "name": "California" } }
+        ]
       },
 
       {
@@ -1868,6 +2108,134 @@
     /* ══════════════════════════════════════════
        LOCATIONS
     ══════════════════════════════════════════ */
+    /* ── Locations Section (Google Maps Optimized) ── */
+    #locations-section {
+      width: 100%; max-width: 520px; padding: 0 16px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .locations-intro {
+      font-family: 'Poppins', sans-serif; font-size: 12px;
+      color: rgba(255,255,255,0.42); line-height: 1.65; margin: 0;
+      text-align: center;
+    }
+    .loc-card {
+      background: linear-gradient(145deg, rgba(13,31,60,0.55), rgba(6,12,30,0.48));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px; overflow: hidden;
+      display: flex; flex-direction: column; gap: 0;
+      transition: border-color 0.25s;
+    }
+    .loc-card:hover { border-color: rgba(212,43,43,0.35); }
+    .loc-card > *:not(.loc-map) { padding: 0 16px; }
+    .loc-header {
+      display: flex; align-items: center; gap: 8px;
+      padding-top: 16px !important; padding-bottom: 6px !important;
+    }
+    .loc-badge {
+      font-family: 'Poppins', sans-serif; font-size: 8.5px; font-weight: 800;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 100px; padding: 2px 8px;
+    }
+    .loc-badge-hq {
+      color: #c8a84b;
+      background: rgba(200,168,75,0.12);
+      border-color: rgba(200,168,75,0.25);
+    }
+    .loc-city {
+      font-family: 'Playfair Display', serif; font-size: 16px;
+      font-weight: 700; color: #fff; flex: 1;
+    }
+    .loc-hours {
+      font-family: 'Poppins', sans-serif; font-size: 10px;
+      color: #37ff87; font-weight: 600;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .loc-hours-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #37ff87;
+      box-shadow: 0 0 6px rgba(55,255,135,0.6);
+      animation: pulse-green 2s ease-in-out infinite;
+    }
+    @keyframes pulse-green {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:0.6; transform:scale(0.8); }
+    }
+    .loc-addr {
+      font-family: 'Poppins', sans-serif; font-size: 12px;
+      color: rgba(255,255,255,0.65); line-height: 1.65;
+      padding-bottom: 6px !important;
+    }
+    .loc-phone {
+      font-family: 'Poppins', sans-serif; font-size: 13px;
+      font-weight: 700; padding-bottom: 8px !important;
+    }
+    .loc-phone a { color: #d42b2b; text-decoration: none; }
+    .loc-phone a:hover { color: #ff4444; }
+    .loc-features {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      padding-bottom: 12px !important;
+    }
+    .loc-feat {
+      font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 600;
+      color: rgba(255,255,255,0.45);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 100px; padding: 3px 10px;
+    }
+    .loc-ctas {
+      display: flex; gap: 6px; flex-wrap: wrap;
+      padding-bottom: 14px !important;
+    }
+    .loc-btn {
+      font-family: 'Poppins', sans-serif; font-size: 10.5px; font-weight: 700;
+      border-radius: 100px; padding: 7px 13px; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 4px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .loc-btn:hover { transform: translateY(-1px); opacity: 0.9; }
+    .loc-btn-map {
+      color: #fff; background: rgba(66,133,244,0.85);
+      border: 1px solid rgba(66,133,244,0.4);
+    }
+    .loc-btn-dir {
+      color: #fff; background: rgba(52,168,83,0.8);
+      border: 1px solid rgba(52,168,83,0.35);
+    }
+    .loc-btn-call {
+      color: #fff; background: linear-gradient(135deg,#d42b2b,#b01f1f);
+      border: 1px solid rgba(212,43,43,0.4);
+    }
+    .loc-map {
+      display: block; border-radius: 0 0 18px 18px;
+      filter: invert(0.88) hue-rotate(185deg) saturate(0.9);
+      margin-top: 4px;
+    }
+    /* Near-Me Banner */
+    .loc-nearme-banner {
+      background: linear-gradient(135deg, rgba(66,133,244,0.1), rgba(52,168,83,0.08));
+      border: 1px solid rgba(66,133,244,0.2);
+      border-radius: 16px; padding: 18px 16px;
+      display: flex; flex-direction: column; gap: 14px; text-align: center;
+    }
+    .loc-nearme-text {
+      font-family: 'Poppins', sans-serif; font-size: 13px;
+      color: rgba(255,255,255,0.7); line-height: 1.55;
+    }
+    .loc-nearme-text strong { color: #fff; }
+    .loc-nearme-btns { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+    .loc-nearme-btn {
+      font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 700;
+      border-radius: 100px; padding: 10px 18px; text-decoration: none;
+      display: inline-block; transition: transform 0.2s;
+    }
+    .loc-nearme-btn:hover { transform: translateY(-2px); }
+    .loc-nearme-gmaps { color: #fff; background: rgba(66,133,244,0.9); }
+    .loc-nearme-call { color: #fff; background: linear-gradient(135deg,#d42b2b,#b01f1f); }
+
+    /* Legacy .locations grid — keep for any fallback references */
     .locations {
       width: 100%;
       max-width: 520px;
@@ -3496,38 +3864,172 @@
     </div>
   </div>
 
-  <!-- Office Locations -->
+  <!-- Office Locations — Google Maps Optimized -->
   <div class="section-header">
     <h2>Office Locations</h2>
     <div class="section-line"></div>
   </div>
-  <div class="locations">
-    <div class="location-card">
-      <div class="location-city">Fontana</div>
-      <div class="location-addr">7337 East Ave, Suite E<br/>Fontana, CA 92336</div>
-    </div>
-    <div class="location-card">
-      <div class="location-city">San Bernardino</div>
-      <div class="location-addr">2627 S Waterman Ave, Suite D<br/>San Bernardino, CA 92408</div>
-    </div>
-    <div class="location-card">
-      <div class="location-city">Ontario</div>
-      <div class="location-addr">500 East E Street<br/>Ontario, CA 91764</div>
-    </div>
-    <div class="location-card">
-      <div class="location-city">Rancho Cucamonga</div>
-      <div class="location-addr">12365 Foothill Blvd, Suite 105<br/>Rancho Cucamonga, CA 92336</div>
-    </div>
-  </div>
 
-  <!-- Maps -->
-  <div style="width:100%;max-width:520px;padding:0 16px;margin-top:4px;display:flex;flex-direction:column;gap:10px;">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3303.0030215599413!2d-117.51530062407383!3d34.12067237313125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c34a28eb78790d%3A0x183ef8c2b2bf01bf!2sGonzales%20Law%20Offices%20-%20Attorney%20Mark%20Gonzales!5e0!3m2!1sen!2sus!4v1777525852029!5m2!1sen!2sus"
-      width="100%" height="220" style="border:0;border-radius:12px;display:block;filter:invert(0.9) hue-rotate(180deg);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.0591993087514!2d-117.64847602407613!3d34.06799667315105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c3338a4ee238a1%3A0x6fc0f7ee147ee91d!2sGonzales%20Law%20Offices%20-%20Attorney%20Mark%20Gonzales!5e0!3m2!1sen!2sus!4v1777525924359!5m2!1sen!2sus"
-      width="100%" height="220" style="border:0;border-radius:12px;display:block;filter:invert(0.9) hue-rotate(180deg);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.6263141809754!2d-117.2808973240766!3d34.05345557315647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcad03b7a9a7e5%3A0x66863168b5084ba3!2sGonzales%20Law%20Offices%20-%20Attorney%20Mark%20Gonzales!5e0!3m2!1sen!2sus!4v1777525967016!5m2!1sen!2sus"
-      width="100%" height="220" style="border:0;border-radius:12px;display:block;filter:invert(0.9) hue-rotate(180deg);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <div id="locations-section">
+    <p class="locations-intro">4 offices across the Inland Empire — open 24 hours, 7 days a week. Walk-ins welcome. Se habla español.</p>
+
+    <!-- FONTANA HQ -->
+    <div class="loc-card"
+         itemscope itemtype="https://schema.org/LocalBusiness"
+         itemid="https://www.gonzaleslawoffices.com/#office-fontana">
+      <meta itemprop="name" content="Gonzales Law Offices — Car Accident Lawyer Fontana CA" />
+      <meta itemprop="telephone" content="+18882322898" />
+      <link itemprop="url" href="https://www.gonzaleslawoffices.com/" />
+      <link itemprop="hasMap" href="https://www.google.com/maps/place/Gonzales+Law+Offices+-+Attorney+Mark+Gonzales/@34.1206724,-117.5153006,17z" />
+      <link itemprop="sameAs" href="https://www.google.com/maps/place/Gonzales+Law+Offices+-+Attorney+Mark+Gonzales/@34.1206724,-117.5153006,17z" />
+      <div class="loc-header">
+        <div class="loc-badge loc-badge-hq">HQ</div>
+        <div class="loc-city" itemprop="addressLocality">Fontana</div>
+        <div class="loc-hours"><span class="loc-hours-dot"></span>Open 24/7</div>
+      </div>
+      <div class="loc-addr"
+           itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+        <span itemprop="streetAddress">7337 East Ave, Suite E</span><br>
+        <span itemprop="addressLocality">Fontana</span>, <span itemprop="addressRegion">CA</span> <span itemprop="postalCode">92336</span>
+        <meta itemprop="addressCountry" content="US" />
+      </div>
+      <div class="loc-phone"><a href="tel:18882322898" itemprop="telephone">1-888-232-2898</a></div>
+      <div class="loc-features">
+        <span class="loc-feat">♿ Accessible</span>
+        <span class="loc-feat">🅿️ Free Parking</span>
+        <span class="loc-feat">🇪🇸 Español</span>
+      </div>
+      <div class="loc-ctas">
+        <a href="https://www.google.com/maps/place/Gonzales+Law+Offices+-+Attorney+Mark+Gonzales/@34.1206724,-117.5153006,17z" target="_blank" rel="noopener" class="loc-btn loc-btn-map">📍 View on Maps</a>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=7337+East+Ave+Suite+E+Fontana+CA+92336&destination_place_id=ChIJDXl46yiqwoARv2G_srLI8xg" target="_blank" rel="noopener" class="loc-btn loc-btn-dir">🧭 Get Directions</a>
+        <a href="tel:18882322898" class="loc-btn loc-btn-call">📞 Call Now</a>
+      </div>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3303.0030215599413!2d-117.51530062407383!3d34.12067237313125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c34a28eb78790d%3A0x183ef8c2b2bf01bf!2sGonzales%20Law%20Offices%20-%20Attorney%20Mark%20Gonzales!5e0!3m2!1sen!2sus!4v1777525852029!5m2!1sen!2sus"
+        class="loc-map" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Gonzales Law Offices Fontana — Google Maps"></iframe>
+    </div>
+
+    <!-- ONTARIO -->
+    <div class="loc-card"
+         itemscope itemtype="https://schema.org/LocalBusiness"
+         itemid="https://www.gonzaleslawoffices.com/#office-ontario">
+      <meta itemprop="name" content="Gonzales Law Offices — Car Accident Lawyer Ontario CA" />
+      <meta itemprop="telephone" content="+18882322898" />
+      <link itemprop="url" href="https://www.gonzaleslawoffices.com/" />
+      <link itemprop="hasMap" href="https://www.google.com/maps/place/Gonzales+Law+Offices+-+Attorney+Mark+Gonzales/@34.06521,-117.6492,17z" />
+      <link itemprop="sameAs" href="https://www.google.com/maps/place/Gonzales+Law+Offices+-+Attorney+Mark+Gonzales/@34.06521,-117.6492,17z" />
+      <div class="loc-header">
+        <div class="loc-badge">Office</div>
+        <div class="loc-city" itemprop="addressLocality">Ontario</div>
+        <div class="loc-hours"><span class="loc-hours-dot"></span>Open 24/7</div>
+      </div>
+      <div class="loc-addr"
+           itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+        <span itemprop="streetAddress">500 East E Street</span><br>
+        <span itemprop="addressLocality">Ontario</span>, <span itemprop="addressRegion">CA</span> <span itemprop="postalCode">91764</span>
+        <meta itemprop="addressCountry" content="US" />
+      </div>
+      <div class="loc-phone"><a href="tel:18882322898" itemprop="telephone">1-888-232-2898</a></div>
+      <div class="loc-features">
+        <span class="loc-feat">♿ Accessible</span>
+        <span class="loc-feat">🅿️ Free Parking</span>
+        <span class="loc-feat">🇪🇸 Español</span>
+      </div>
+      <div class="loc-ctas">
+        <a href="https://www.google.com/maps/place/Gonzales+Law+Offices+-+Attorney+Mark+Gonzales/@34.06521,-117.6492,17z" target="_blank" rel="noopener" class="loc-btn loc-btn-map">📍 View on Maps</a>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=500+East+E+Street+Ontario+CA+91764" target="_blank" rel="noopener" class="loc-btn loc-btn-dir">🧭 Get Directions</a>
+        <a href="tel:18882322898" class="loc-btn loc-btn-call">📞 Call Now</a>
+      </div>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.0591993087514!2d-117.64847602407613!3d34.06799667315105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c3338a4ee238a1%3A0x6fc0f7ee147ee91d!2sGonzales%20Law%20Offices%20-%20Attorney%20Mark%20Gonzales!5e0!3m2!1sen!2sus!4v1777525924359!5m2!1sen!2sus"
+        class="loc-map" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Gonzales Law Offices Ontario CA — Google Maps"></iframe>
+    </div>
+
+    <!-- SAN BERNARDINO -->
+    <div class="loc-card"
+         itemscope itemtype="https://schema.org/LocalBusiness"
+         itemid="https://www.gonzaleslawoffices.com/#office-sanbernardino">
+      <meta itemprop="name" content="Gonzales Law Offices — Car Accident Lawyer San Bernardino CA" />
+      <meta itemprop="telephone" content="+19094065099" />
+      <link itemprop="url" href="https://www.gonzaleslawoffices.com/" />
+      <link itemprop="hasMap" href="https://www.google.com/maps/place/Gonzales+Law+Offices+-+Attorney+Mark+Gonzales/@34.0965,-117.277,17z" />
+      <link itemprop="sameAs" href="https://www.google.com/maps/place/Gonzales+Law+Offices+-+Attorney+Mark+Gonzales/@34.0965,-117.277,17z" />
+      <div class="loc-header">
+        <div class="loc-badge">Office</div>
+        <div class="loc-city" itemprop="addressLocality">San Bernardino</div>
+        <div class="loc-hours"><span class="loc-hours-dot"></span>Open 24/7</div>
+      </div>
+      <div class="loc-addr"
+           itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+        <span itemprop="streetAddress">2627 S Waterman Ave, Suite D</span><br>
+        <span itemprop="addressLocality">San Bernardino</span>, <span itemprop="addressRegion">CA</span> <span itemprop="postalCode">92408</span>
+        <meta itemprop="addressCountry" content="US" />
+      </div>
+      <div class="loc-phone"><a href="tel:19094065099" itemprop="telephone">(909) 406-5099</a></div>
+      <div class="loc-features">
+        <span class="loc-feat">♿ Accessible</span>
+        <span class="loc-feat">🅿️ Free Parking</span>
+        <span class="loc-feat">🇪🇸 Español</span>
+      </div>
+      <div class="loc-ctas">
+        <a href="https://www.google.com/maps/place/Gonzales+Law+Offices+-+Attorney+Mark+Gonzales/@34.0965,-117.277,17z" target="_blank" rel="noopener" class="loc-btn loc-btn-map">📍 View on Maps</a>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=2627+S+Waterman+Ave+Suite+D+San+Bernardino+CA+92408" target="_blank" rel="noopener" class="loc-btn loc-btn-dir">🧭 Get Directions</a>
+        <a href="tel:19094065099" class="loc-btn loc-btn-call">📞 Call Now</a>
+      </div>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.6263141809754!2d-117.2808973240766!3d34.05345557315647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcad03b7a9a7e5%3A0x66863168b5084ba3!2sGonzales%20Law%20Offices%20-%20Attorney%20Mark%20Gonzales!5e0!3m2!1sen!2sus!4v1777525967016!5m2!1sen!2sus"
+        class="loc-map" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Gonzales Law Offices San Bernardino — Google Maps"></iframe>
+    </div>
+
+    <!-- RANCHO CUCAMONGA -->
+    <div class="loc-card"
+         itemscope itemtype="https://schema.org/LocalBusiness"
+         itemid="https://www.gonzaleslawoffices.com/#office-rc">
+      <meta itemprop="name" content="Gonzales Law Offices — Car Accident Lawyer Rancho Cucamonga CA" />
+      <meta itemprop="telephone" content="+18882322898" />
+      <link itemprop="url" href="https://www.gonzaleslawoffices.com/" />
+      <link itemprop="hasMap" href="https://www.google.com/maps/place/Gonzales+Law+Offices+-+Attorney+Mark+Gonzales/@34.12543,-117.5639,17z" />
+      <link itemprop="sameAs" href="https://www.google.com/maps/place/Gonzales+Law+Offices+-+Attorney+Mark+Gonzales/@34.12543,-117.5639,17z" />
+      <div class="loc-header">
+        <div class="loc-badge">Office</div>
+        <div class="loc-city" itemprop="addressLocality">Rancho Cucamonga</div>
+        <div class="loc-hours"><span class="loc-hours-dot"></span>Open 24/7</div>
+      </div>
+      <div class="loc-addr"
+           itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+        <span itemprop="streetAddress">12365 Foothill Blvd, Suite 105</span><br>
+        <span itemprop="addressLocality">Rancho Cucamonga</span>, <span itemprop="addressRegion">CA</span> <span itemprop="postalCode">91739</span>
+        <meta itemprop="addressCountry" content="US" />
+      </div>
+      <div class="loc-phone"><a href="tel:18882322898" itemprop="telephone">1-888-232-2898</a></div>
+      <div class="loc-features">
+        <span class="loc-feat">♿ Accessible</span>
+        <span class="loc-feat">🅿️ Free Parking</span>
+        <span class="loc-feat">🇪🇸 Español</span>
+      </div>
+      <div class="loc-ctas">
+        <a href="https://www.google.com/maps/place/Gonzales+Law+Offices+-+Attorney+Mark+Gonzales/@34.12543,-117.5639,17z" target="_blank" rel="noopener" class="loc-btn loc-btn-map">📍 View on Maps</a>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=12365+Foothill+Blvd+Suite+105+Rancho+Cucamonga+CA+91739" target="_blank" rel="noopener" class="loc-btn loc-btn-dir">🧭 Get Directions</a>
+        <a href="tel:18882322898" class="loc-btn loc-btn-call">📞 Call Now</a>
+      </div>
+      <!-- Rancho Cucamonga uses same GMB as Fontana HQ on the embed — dedicated listing -->
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3302.7815647073454!2d-117.56389!3d34.12543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c34a28eb78790d%3A0x183ef8c2b2bf01bf!2sGonzales%20Law%20Offices!5e0!3m2!1sen!2sus!4v1699000000000!5m2!1sen!2sus"
+        class="loc-map" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Gonzales Law Offices Rancho Cucamonga — Google Maps"></iframe>
+    </div>
+
+    <!-- Near-Me CTA -->
+    <div class="loc-nearme-banner">
+      <div class="loc-nearme-text">Looking for a <strong>car accident lawyer near me?</strong><br>All 4 offices serve you — wherever you are in Southern California.</div>
+      <div class="loc-nearme-btns">
+        <a href="https://www.google.com/maps/search/Gonzales+Law+Offices+car+accident+lawyer+near+me" target="_blank" rel="noopener" class="loc-nearme-btn loc-nearme-gmaps">📍 Find Nearest Office</a>
+        <a href="tel:18882322898" class="loc-nearme-btn loc-nearme-call">📞 Call 1-888-232-2898</a>
+      </div>
+    </div>
   </div>
 
   <!-- Service Areas -->
