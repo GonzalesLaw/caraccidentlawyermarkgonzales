@@ -645,25 +645,27 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --red:      #c42727;
+      --red:      #d42b2b;
       --red-dark: #a01f1f;
-      --red-glow: rgba(196,39,39,0.35);
+      --red-glow: rgba(212,43,43,0.40);
       --navy:     #0d1f3c;
       --navy2:    #162d52;
       --white:    #ffffff;
       --offwhite: #f8f4f0;
       --gold:     #c8a84b;
-      --gold-lt:  #e2c46a;
+      --gold-lt:  #f0d060;
       --text:     #1a1a1a;
-      --muted:    rgba(255,255,255,0.50);
-      --surface:  rgba(255,255,255,0.05);
-      --border:   rgba(255,255,255,0.09);
-      --radius:   12px;
+      --muted:    rgba(255,255,255,0.52);
+      --surface:  rgba(255,255,255,0.055);
+      --border:   rgba(255,255,255,0.10);
+      --radius:   14px;
+      --glass:    rgba(255,255,255,0.04);
+      --glass-border: rgba(255,255,255,0.10);
     }
 
     html { scroll-behavior: smooth; }
@@ -1213,8 +1215,120 @@
       margin: 4px 0;
     }
 
-    @media (max-width: 400px) {
-      .stat-strip { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    /* ── Scrolling Ticker ── */
+    #ticker-wrap {
+      width: 100%;
+      background: linear-gradient(90deg, rgba(212,43,43,0.18), rgba(212,43,43,0.10), rgba(212,43,43,0.18));
+      border-bottom: 1px solid rgba(212,43,43,0.25);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 7px 0;
+    }
+    #ticker {
+      display: inline-block;
+      animation: tickerScroll 36s linear infinite;
+    }
+    #ticker:hover { animation-play-state: paused; }
+    @keyframes tickerScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .tick-item {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--gold-lt);
+      padding: 0 6px;
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 0.2px;
+    }
+    .tick-sep {
+      color: rgba(212,43,43,0.6);
+      font-size: 13px;
+      padding: 0 4px;
+    }
+
+    /* ── Top Banner upgrade ── */
+    .top-banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .tb-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold-lt);
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    /* ── Award row ── */
+    .award-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 10px;
+    }
+    .award-pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.80);
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 4px 11px;
+      border-radius: 100px;
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 0.2px;
+    }
+    .award-pill.gold {
+      background: rgba(200,168,75,0.15);
+      border-color: rgba(200,168,75,0.35);
+      color: var(--gold-lt);
+    }
+
+    /* ── Firm name — Playfair Display ── */
+    .firm-name {
+      font-family: 'Playfair Display', serif !important;
+      font-size: 30px !important;
+      font-weight: 800 !important;
+      letter-spacing: -0.5px !important;
+      line-height: 1.15 !important;
+    }
+    .firm-name span { color: var(--red); }
+
+    /* ── Stats — 4 across ── */
+    .stat-strip { grid-template-columns: repeat(4, 1fr) !important; }
+
+    /* ── Section headers — Playfair ── */
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+    }
+
+    /* ── Link buttons — glassier ── */
+    .link-btn {
+      background: var(--glass) !important;
+      border-color: var(--glass-border) !important;
+      backdrop-filter: blur(8px);
+    }
+    .link-btn:hover {
+      background: rgba(255,255,255,0.08) !important;
+      border-color: rgba(212,43,43,0.40) !important;
+      box-shadow: 0 6px 24px rgba(212,43,43,0.12) !important;
+    }
+
+    /* ── Cards ── */
+    .testimonial-card, .location-card, .cert-row {
+      backdrop-filter: blur(10px);
+    }
+
+    /* ── Why cards ── */
+    .why-card { backdrop-filter: blur(8px); }
+
+    @media (max-width: 420px) {
+      .stat-strip { grid-template-columns: repeat(2, 1fr) !important; }
       .stat-num { font-size: 17px; }
       .locations { grid-template-columns: 1fr; }
     }
@@ -1828,25 +1942,58 @@
     <button class="lang-btn" onclick="window.open('https://gonzaleslawoffices.com/es/','_blank')">ES</button>
   </div>
 
+  <!-- Scrolling case results ticker -->
+  <div id="ticker-wrap">
+    <div id="ticker">
+      <span class="tick-item">💰 $4.2M — Semi-Truck Collision, Fontana</span>
+      <span class="tick-sep">·</span>
+      <span class="tick-item">💰 $2.8M — Wrongful Death, San Bernardino</span>
+      <span class="tick-sep">·</span>
+      <span class="tick-item">💰 $1.5M — Rideshare Accident, Ontario</span>
+      <span class="tick-sep">·</span>
+      <span class="tick-item">💰 $980K — Car Accident, Rancho Cucamonga</span>
+      <span class="tick-sep">·</span>
+      <span class="tick-item">💰 $750K — Slip & Fall, Riverside</span>
+      <span class="tick-sep">·</span>
+      <span class="tick-item">💰 $4.2M — Semi-Truck Collision, Fontana</span>
+      <span class="tick-sep">·</span>
+      <span class="tick-item">💰 $2.8M — Wrongful Death, San Bernardino</span>
+      <span class="tick-sep">·</span>
+      <span class="tick-item">💰 $1.5M — Rideshare Accident, Ontario</span>
+      <span class="tick-sep">·</span>
+      <span class="tick-item">💰 $980K — Car Accident, Rancho Cucamonga</span>
+      <span class="tick-sep">·</span>
+      <span class="tick-item">💰 $750K — Slip & Fall, Riverside</span>
+    </div>
+  </div>
+
   <!-- Top banner -->
   <div class="top-banner">
-    🏆 California's #1 Personal Injury Law Firm &nbsp;·&nbsp;
+    <span class="tb-dot"></span>
+    California's #1 Personal Injury Law Firm &nbsp;·&nbsp;
     <a href="tel:18882322898">FREE Consultation: 1-888-232-2898</a>
+    <span class="tb-dot"></span>
   </div>
 
   <!-- Header -->
   <div class="site-header">
     <div class="logo-badge"><img src="logo.jpg" alt="Gonzales Law Offices Logo"/></div>
     <div class="firm-name" id="speakable-name">Gonzales <span>Law</span> Offices</div>
-    <div class="firm-esq">Mark Gonzales, Esq.</div>
+    <div class="firm-esq">Mark Gonzales, Esq. &mdash; Personal Injury Attorney</div>
     <div class="firm-tagline">"Your Trusted Advocate In The Fight For Justice"</div>
+    <!-- Award row -->
+    <div class="award-row">
+      <div class="award-pill">⭐ 4.9 Google</div>
+      <div class="award-pill gold">🏆 #1 Inland Empire</div>
+      <div class="award-pill">✅ Lead Counsel Verified</div>
+    </div>
   </div>
 
   <!-- Stats -->
   <div class="stat-strip">
     <div class="stat-card">
       <div class="stat-num">$100M<sup>+</sup></div>
-      <div class="stat-label">Recovered for Clients</div>
+      <div class="stat-label">Recovered</div>
     </div>
     <div class="stat-card">
       <div class="stat-num">4.9★</div>
@@ -1854,27 +2001,31 @@
     </div>
     <div class="stat-card">
       <div class="stat-num">10<sup>+</sup></div>
-      <div class="stat-label">Years Experience</div>
+      <div class="stat-label">Yrs Experience</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">Available Now</div>
     </div>
   </div>
 
-  <!-- Badges -->
-  <div class="badges">
-    <span class="badge red">🏆 No Fee Unless We Win</span>
-    <span class="badge">⚖ Lead Counsel Verified</span>
-    <span class="badge red">📞 Free Consultation</span>
-    <span class="badge">🇲🇽 Se Habla Español</span>
-  </div>
-
-  <!-- Primary CTA -->
-  <div class="cta-wrap">
+  <!-- Primary CTA — double button -->
+  <div class="cta-wrap" style="display:flex;flex-direction:column;gap:10px;">
     <a class="call-bar" href="tel:18882322898">
       <div class="call-icon">📞</div>
       <div>
-        Schedule a Free Consultation
-        <span class="call-sub">1-888-232-2898 · Available 24/7</span>
+        Call Free — 1-888-232-2898
+        <span class="call-sub">Available 24/7 · No Fee Unless We Win</span>
       </div>
       <span class="call-free" id="speakable-cta">FREE</span>
+    </a>
+    <a class="call-bar" href="sms:+19094065099" style="background:linear-gradient(135deg,#1a5c1a,#0d3d0d);box-shadow:0 8px 28px rgba(37,211,102,0.22);">
+      <div class="call-icon" style="font-size:18px;">💬</div>
+      <div>
+        Text Us Now — (909) 406-5099
+        <span class="call-sub">Quick response · Se Habla Español</span>
+      </div>
+      <span class="call-free" style="background:rgba(255,255,255,0.18);">TEXT</span>
     </a>
   </div>
 
