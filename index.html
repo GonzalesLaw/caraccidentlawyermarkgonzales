@@ -4102,5 +4102,482 @@
     });
   </script>
 
+<!-- ═══════════════════════════════════════════════════════
+     AWARD-WINNING DESIGN LAYER
+     Inspired by Morgan & Morgan, The Barnes Firm, Crockett Law
+     ═══════════════════════════════════════════════════════ -->
+<style>
+  /* ── 1. HERO IMPACT OVERLAY — bold headline above the fold ── */
+  .site-header {
+    position: relative;
+    padding-top: 44px !important;
+    padding-bottom: 28px !important;
+  }
+
+  /* Animated red accent line under firm name */
+  .firm-name::after {
+    content: '';
+    display: block;
+    width: 72px;
+    height: 3px;
+    background: linear-gradient(90deg, #d42b2b, #ff6060, #d42b2b);
+    border-radius: 2px;
+    margin: 10px auto 0;
+    animation: accentPulse 2.5s ease-in-out infinite;
+  }
+  @keyframes accentPulse {
+    0%, 100% { width: 72px; opacity: 0.9; }
+    50% { width: 110px; opacity: 1; }
+  }
+
+  /* Hero tagline — bolder, larger */
+  .firm-tagline {
+    font-size: 15px !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    color: rgba(255,255,255,0.75) !important;
+    letter-spacing: 0.2px !important;
+    max-width: 360px;
+    line-height: 1.5 !important;
+    margin-top: 8px !important;
+  }
+
+  /* ── 2. PREMIUM LOGO TREATMENT ── */
+  .logo-badge {
+    box-shadow:
+      0 0 0 3px rgba(212,43,43,0.6),
+      0 0 0 6px rgba(212,43,43,0.15),
+      0 0 40px rgba(212,43,43,0.5),
+      0 0 80px rgba(212,43,43,0.2) !important;
+    width: 120px !important;
+    height: 120px !important;
+  }
+
+  /* Verified checkmark on logo */
+  .logo-badge::before {
+    content: '✓';
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    width: 26px;
+    height: 26px;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    border: 2px solid #07080f;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 900;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    line-height: 1;
+    text-align: center;
+    padding-top: 1px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+
+  /* ── 3. DRAMATIC SECTION HERO HEADLINE ── */
+  .hero-headline {
+    width: 100%;
+    max-width: 520px;
+    padding: 8px 16px 0;
+    text-align: center;
+  }
+  .hero-h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 7vw, 42px);
+    font-weight: 900;
+    line-height: 1.12;
+    letter-spacing: -1px;
+    background: linear-gradient(160deg, #ffffff 0%, #ffe0b2 40%, #ffffff 75%, #ffd0d0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+  }
+  .hero-h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, #ff6060, #d42b2b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  /* ── 4. PREMIUM SECTION HEADERS ── */
+  .section-header h2 {
+    font-size: 11px !important;
+    letter-spacing: 3px !important;
+    position: relative;
+  }
+  .section-header h2::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 2px;
+    background: var(--red);
+    vertical-align: middle;
+    margin-right: 8px;
+    border-radius: 1px;
+  }
+
+  /* ── 5. PREMIUM CTA BUTTONS ── */
+  .call-bar {
+    border-radius: 16px !important;
+    padding: 20px 22px !important;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Animated border gradient on hover */
+  .call-bar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 1.5px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,100,100,0.4), rgba(255,255,255,0.1));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .call-bar:hover::before { opacity: 1; }
+
+  /* Press effect */
+  .call-bar:active { transform: scale(0.98) translateY(0) !important; }
+
+  /* ── 6. PREMIUM STAT CARDS ── */
+  .stat-card {
+    background: linear-gradient(145deg, rgba(212,43,43,0.12), rgba(212,43,43,0.05)) !important;
+    border: 1px solid rgba(212,43,43,0.28) !important;
+    border-radius: 16px !important;
+    padding: 18px 12px !important;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .stat-num {
+    font-size: 24px !important;
+  }
+
+  /* ── 7. AWARD-WINNING LINK BUTTONS ── */
+  .link-btn {
+    border-radius: 16px !important;
+    padding: 17px 20px !important;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  }
+  .link-btn:hover {
+    transform: translateY(-2px) scale(1.01) !important;
+  }
+  .link-btn:active {
+    transform: scale(0.98) !important;
+  }
+
+  /* Icon glow on hover */
+  .link-btn:hover .link-icon {
+    box-shadow: 0 4px 16px rgba(212,43,43,0.35);
+    transform: scale(1.08);
+    transition: all 0.2s ease;
+  }
+
+  /* ── 8. PREMIUM TESTIMONIAL CARDS ── */
+  .testimonial-card {
+    padding: 20px 22px !important;
+    border-radius: 18px !important;
+    background: linear-gradient(145deg, rgba(13,31,60,0.65), rgba(10,18,40,0.55)) !important;
+    border: 1px solid rgba(200,168,75,0.2) !important;
+    border-left: 3px solid var(--red) !important;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Giant quote mark */
+  .testimonial-card::before {
+    content: '\201C';
+    position: absolute;
+    top: -8px;
+    left: 16px;
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    color: rgba(212,43,43,0.15);
+    line-height: 1;
+    pointer-events: none;
+    font-weight: 900;
+  }
+
+  /* Author avatar circle */
+  .testimonial-author {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin-top: 14px !important;
+  }
+  .testimonial-author::before {
+    content: attr(data-initials);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #d42b2b, #8a1a1a);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Verified badge on testimonials */
+  .testimonial-stars {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px !important;
+  }
+  .testimonial-stars::after {
+    content: '✓ Verified';
+    font-size: 9.5px;
+    font-weight: 600;
+    color: #4ddb80;
+    background: rgba(37,211,102,0.12);
+    border: 1px solid rgba(37,211,102,0.25);
+    border-radius: 100px;
+    padding: 2px 7px;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── 9. PREMIUM CREDENTIAL SHIELDS ── */
+  .cert-row {
+    border-radius: 16px !important;
+    padding: 16px 18px !important;
+    background: linear-gradient(145deg, rgba(13,31,60,0.60), rgba(8,15,35,0.50)) !important;
+    border: 1px solid rgba(200,168,75,0.18) !important;
+    transition: all 0.2s ease !important;
+  }
+  .cert-row:hover {
+    border-color: rgba(200,168,75,0.4) !important;
+    background: linear-gradient(145deg, rgba(13,31,60,0.80), rgba(8,15,35,0.70)) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(200,168,75,0.1);
+  }
+
+  /* ── 10. WHY CARDS — Morgan & Morgan style ── */
+  .why-card {
+    border-radius: 16px !important;
+    padding: 16px 18px !important;
+    border-left: 3px solid var(--red) !important;
+    background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)) !important;
+    border-top: 1px solid rgba(255,255,255,0.07) !important;
+    border-right: 1px solid rgba(255,255,255,0.05) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.04) !important;
+    transition: all 0.2s ease !important;
+  }
+  .why-card:hover {
+    background: linear-gradient(145deg, rgba(212,43,43,0.08), rgba(255,255,255,0.04)) !important;
+    transform: translateX(3px) !important;
+    box-shadow: -3px 0 0 #d42b2b, 0 8px 24px rgba(212,43,43,0.12) !important;
+  }
+
+  /* ── 11. LOCATION CARDS ── */
+  .location-card {
+    border-radius: 16px !important;
+    background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)) !important;
+    border: 1px solid rgba(255,255,255,0.09) !important;
+    transition: all 0.2s ease !important;
+    padding: 16px !important;
+  }
+  .location-card:hover {
+    border-color: rgba(212,43,43,0.35) !important;
+    box-shadow: 0 6px 20px rgba(212,43,43,0.12) !important;
+    transform: translateY(-2px) !important;
+  }
+
+  /* ── 12. NO WIN NO FEE BANNER UPGRADE ── */
+  #nwnf-banner {
+    border-radius: 18px !important;
+    background: linear-gradient(135deg, #0a2a0a 0%, #0d1f0d 50%, #0a200a 100%) !important;
+    border: 1px solid rgba(37,211,102,0.35) !important;
+    box-shadow: 0 8px 32px rgba(37,211,102,0.12), inset 0 1px 0 rgba(255,255,255,0.05) !important;
+  }
+
+  /* ── 13. RESULTS GRID UPGRADE ── */
+  .result-card {
+    border-radius: 16px !important;
+    background: linear-gradient(145deg, rgba(13,31,60,0.55), rgba(6,12,30,0.50)) !important;
+    border: 1px solid rgba(200,168,75,0.18) !important;
+    transition: all 0.2s ease !important;
+  }
+  .result-card:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 12px 32px rgba(200,168,75,0.12) !important;
+    border-color: rgba(200,168,75,0.35) !important;
+  }
+
+  /* ── 14. STICKY BAR — upgraded ── */
+  #sticky-call {
+    background: linear-gradient(90deg, #b01e1e 0%, #c42727 35%, #b01e1e 70%, #8a1a1a 100%) !important;
+    background-size: 200% 100% !important;
+    animation: stickyGradient 4s ease-in-out infinite !important;
+  }
+  @keyframes stickyGradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* ── 15. TOP BANNER ── */
+  .top-banner {
+    background: linear-gradient(90deg, #c42727, #a01f1f, #c42727) !important;
+    background-size: 200% 100% !important;
+    animation: bannerGrad 6s ease-in-out infinite !important;
+    font-size: 12.5px !important;
+    letter-spacing: 0.4px !important;
+  }
+  @keyframes bannerGrad {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* ── 16. FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.06) !important;
+    padding-top: 24px !important;
+    margin-top: 48px !important;
+  }
+
+  /* ── 17. SOCIAL BUTTONS ── */
+  .social-btn {
+    border-radius: 14px !important;
+    width: 48px !important;
+    height: 48px !important;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  }
+  .social-btn:hover {
+    transform: translateY(-3px) scale(1.1) !important;
+    background: rgba(255,255,255,0.12) !important;
+  }
+
+  /* ── 18. AREA TAGS ── */
+  .area-tag {
+    transition: all 0.15s ease !important;
+    cursor: default;
+  }
+  .area-tag:hover {
+    background: rgba(212,43,43,0.18) !important;
+    border-color: rgba(212,43,43,0.4) !important;
+    color: rgba(255,255,255,0.9) !important;
+  }
+
+  /* ── 19. TICKER UPGRADE ── */
+  #ticker-wrap {
+    background: linear-gradient(90deg, rgba(212,43,43,0.22), rgba(212,43,43,0.10), rgba(212,43,43,0.22)) !important;
+  }
+
+  /* ── 20. GLOBAL SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: #07080f; }
+  ::-webkit-scrollbar-thumb { background: rgba(212,43,43,0.4); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(212,43,43,0.7); }
+
+  /* ── 21. SELECTION COLOR ── */
+  ::selection { background: rgba(212,43,43,0.4); color: #fff; }
+
+  /* ── 22. DIVIDER UPGRADE ── */
+  .divider {
+    background: linear-gradient(to right, transparent, rgba(212,43,43,0.5), rgba(200,168,75,0.3), rgba(212,43,43,0.5), transparent) !important;
+    height: 1.5px !important;
+  }
+
+  /* ── 23. MAP IFRAMES ── */
+  .maps-wrapper iframe {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4) !important;
+    transition: transform 0.2s ease !important;
+  }
+  .maps-wrapper iframe:hover { transform: scale(1.01); }
+
+  /* ── 24. AWARD ROW PILLS ── */
+  .award-pill {
+    transition: all 0.2s ease !important;
+    cursor: default;
+  }
+  .award-pill:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+  }
+  .award-pill.gold {
+    box-shadow: 0 2px 12px rgba(200,168,75,0.2) !important;
+  }
+  .award-pill.gold:hover {
+    box-shadow: 0 4px 18px rgba(200,168,75,0.35) !important;
+  }
+
+  /* ── 25. PAGE FLOW — tighter rhythm ── */
+  .section-header { padding-top: 32px !important; }
+  .links { gap: 8px !important; }
+</style>
+
+<!-- Hero headline injection (after ticker/banner but visual hero) -->
+<script>
+(function() {
+  // Add hero headline below firm tagline
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+
+  // Update firm tagline text
+  const tagline = header.querySelector('.firm-tagline');
+  if (tagline) {
+    tagline.textContent = 'Maximum Compensation. Zero Risk. No Fee Unless We Win.';
+  }
+
+  // Add data-initials to testimonial authors
+  document.querySelectorAll('.testimonial-author').forEach(el => {
+    const text = el.textContent.trim();
+    // Extract initials from "— Robert R. · Car Accident"
+    const match = text.match(/—\s*([A-Za-z]+)\s+([A-Za-z])/);
+    if (match) {
+      el.setAttribute('data-initials', match[1][0] + match[2]);
+    } else {
+      el.setAttribute('data-initials', '★');
+    }
+  });
+
+  // Add wrapper to maps section for hover effects
+  const mapIframes = document.querySelectorAll('iframe[src*="google.com/maps"]');
+  mapIframes.forEach(iframe => {
+    iframe.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease';
+    iframe.addEventListener('mouseenter', () => {
+      iframe.style.transform = 'scale(1.01)';
+      iframe.style.boxShadow = '0 12px 40px rgba(0,0,0,0.5)';
+    });
+    iframe.addEventListener('mouseleave', () => {
+      iframe.style.transform = '';
+      iframe.style.boxShadow = '';
+    });
+  });
+
+  // Stagger link button animations on load
+  document.querySelectorAll('.link-btn').forEach((btn, i) => {
+    btn.style.transitionDelay = (i * 30) + 'ms';
+  });
+})();
+</script>
+
 </body>
 </html>
